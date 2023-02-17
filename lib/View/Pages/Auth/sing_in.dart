@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../Utils/consts.dart';
+import '../../Widgets/custom_text_input.dart';
 
 class SingIn extends StatelessWidget {
   const SingIn({super.key});
@@ -27,27 +28,23 @@ class SingIn extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Green',
-                            style: GoogleFonts.cairo(
-                              fontSize: 50,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w800,
-                            ),
-                          ),
-                          Text(
-                            'grocer',
-                            style: GoogleFonts.cairo(
-                              fontSize: 50,
-                              color: ColorsClass().secondRedFont,
-                              fontWeight: FontWeight.w800,
-                            ),
-                          ),
-                        ],
-                      ),
+                      RichText(
+                          text: TextSpan(
+                              text: 'Green',
+                              style: GoogleFonts.cairo(
+                                fontSize: 50,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w800,
+                              ),
+                              children: [
+                            TextSpan(
+                                text: 'grocer',
+                                style: GoogleFonts.cairo(
+                                  fontSize: 50,
+                                  color: ColorsClass().secondRedFont,
+                                  fontWeight: FontWeight.w800,
+                                ))
+                          ])),
                       Text(
                         'Produtos',
                         style: GoogleFonts.cairo(
@@ -62,60 +59,46 @@ class SingIn extends StatelessWidget {
               ],
             ),
           ),
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(50),
+          SingleChildScrollView(
+            child: Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(50),
+                  ),
+                  color: Colors.white,
                 ),
-                color: Colors.white,
-              ),
-              padding: EdgeInsets.symmetric(
-                horizontal: 32,
-                vertical: 40,
-              ),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 22),
-                    child: TextFormField(
-                      style: TextStyle(fontSize: 16),
-                      decoration: InputDecoration(
-                        labelText: 'Email',
-                        floatingLabelStyle: TextStyle(fontSize: 20),
-                        prefixIcon: Icon(Icons.email_outlined),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(18),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 32,
+                  vertical: 40,
+                ),
+                child: Column(
+                  children: [
+                    Padding(
+                        padding: const EdgeInsets.only(bottom: 22),
+                        child: CustomTextField(
+                          label: 'Email',
+                          prefixIcon: Icon(Icons.email_outlined),
+                        )),
+                    Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: CustomTextField(
+                          label: 'Senha',
+                          prefixIcon: Icon(Icons.lock_outline),
+                          obscureText: true,
+                        )),
+                    GestureDetector(
+                      child: Container(
+                        width: double.infinity,
+                        height: 60,
+                        color: Colors.green,
+                        child: Center(
+                          child: Text('Entrar'),
                         ),
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: TextFormField(
-                      style: TextStyle(fontSize: 16),
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        floatingLabelStyle: TextStyle(fontSize: 20),
-                        labelText: 'Senha',
-                        prefixIcon: Icon(Icons.lock_outline),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(18),
-                        ),
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    child: Container(
-                      width: double.infinity,
-                      height: 60,
-                      color: Colors.green,
-                      child: Center(
-                        child: Text('Entrar'),
-                      ),
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               ),
             ),
           ),
