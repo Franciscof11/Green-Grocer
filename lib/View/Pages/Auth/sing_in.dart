@@ -75,25 +75,30 @@ class SingIn extends StatelessWidget {
                 child: Column(
                   children: [
                     Padding(
-                        padding: const EdgeInsets.only(bottom: 22),
+                        padding: EdgeInsets.only(bottom: 22),
                         child: CustomTextField(
                           label: 'Email',
                           prefixIcon: Icon(Icons.email_outlined),
                         )),
                     Padding(
-                        padding: const EdgeInsets.only(bottom: 20),
+                        padding: EdgeInsets.only(bottom: 20),
                         child: CustomTextField(
                           label: 'Senha',
+                          isSecret: true,
                           prefixIcon: Icon(Icons.lock_outline),
-                          obscureText: true,
                         )),
                     GestureDetector(
                       child: Container(
                         width: double.infinity,
                         height: 60,
-                        color: Colors.green,
+                        decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
                         child: Center(
-                          child: Text('Entrar'),
+                          child: Text('Entrar',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 22)),
                         ),
                       ),
                     )
