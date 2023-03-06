@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'View/Pages/Auth/sing_in.dart';
+import 'package:green_grocer/View/Pages/Auth/sing_in.dart';
 
 void main() {
   runApp(const MainApp());

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:green_grocer/View/Pages/Auth/sing_up.dart';
 import 'package:green_grocer/View/Widgets/remove_glow_effect.dart';
 
 import '../../../Utils/consts.dart';
@@ -165,7 +166,12 @@ class SingIn extends StatelessWidget {
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(12),
                                   )),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => SingUp()));
+                              },
                               child: Text('Criar conta',
                                   style: TextStyle(
                                     color: Colors.green,
