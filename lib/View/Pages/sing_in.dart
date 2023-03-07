@@ -6,6 +6,7 @@ import 'package:green_grocer/View/Widgets/remove_glow_effect.dart';
 import '../../../Utils/consts.dart';
 import '../Widgets/animation_categories_text.dart';
 import '../Widgets/custom_text_input.dart';
+import 'home_base_navigation.dart';
 
 class SingIn extends StatelessWidget {
   const SingIn({super.key});
@@ -103,7 +104,13 @@ class SingIn extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
                             )),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          HomeBaseNavigation()));
+                            },
                             child: Text(
                               'Entrar',
                               style: TextStyle(
