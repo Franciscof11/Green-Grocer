@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:green_grocer/View/Pages/Auth/sing_up.dart';
+import 'package:green_grocer/View/Pages/sing_up.dart';
 import 'package:green_grocer/View/Widgets/remove_glow_effect.dart';
 
 import '../../../Utils/consts.dart';
-import '../../Widgets/animation_categories_text.dart';
-import '../../Widgets/custom_text_input.dart';
+import '../Widgets/animation_categories_text.dart';
+import '../Widgets/custom_text_input.dart';
 
 class SingIn extends StatelessWidget {
   const SingIn({super.key});

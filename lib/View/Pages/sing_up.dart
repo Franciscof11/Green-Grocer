@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:green_grocer/View/Widgets/remove_glow_effect.dart';
 
 import '../../../Utils/consts.dart';
-import '../../Widgets/custom_text_input.dart';
+import '../Widgets/custom_text_input.dart';
 
 class SingUp extends StatelessWidget {
   const SingUp({super.key});
