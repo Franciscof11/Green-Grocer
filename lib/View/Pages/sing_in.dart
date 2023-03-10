@@ -49,7 +49,7 @@ class SingIn extends StatelessWidget {
                                 text: 'grocer',
                                 style: GoogleFonts.cairo(
                                   fontSize: 50,
-                                  color: ColorsClass().secondRedFont,
+                                  color: ColorsClass().redFontTitleApp,
                                   fontWeight: FontWeight.w800,
                                 )),
                           ]),
