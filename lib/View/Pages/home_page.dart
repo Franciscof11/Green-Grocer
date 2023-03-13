@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:green_grocer/Utils/consts.dart';
 
+import '../../Model/app_mock_data.dart' as mock_data;
+import '../Widgets/category_tile.dart';
+
 class _HomePageState extends State<HomePage> {
+  String selectedCategorie = 'Todos';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +81,29 @@ class _HomePageState extends State<HomePage> {
             ),
 
             //
-            //GridView Com Seleção
+            //Seleção Categorias
+            SizedBox(height: 20),
+            SizedBox(
+              height: 35,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                physics: BouncingScrollPhysics(),
+                separatorBuilder: (_, index) => SizedBox(width: 12),
+                itemCount: mock_data.categories.length,
+                itemBuilder: (_, index) => CategoryTile(
+                  label: mock_data.categories[index],
+                  isSelected: mock_data.categories[index] == selectedCategorie,
+                  onPressed: () {
+                    setState(() {
+                      selectedCategorie = mock_data.categories[index];
+                    });
+                  },
+                ),
+              ),
+            )
+
+            //
+            //GridView Items
           ],
         ),
       ),
