@@ -6,7 +6,8 @@ ItemModel apple = ItemModel(
   imageAsset: Image.asset('assets/Images/apple.png'),
   unit: 'kg',
   price: 6.5,
-  description: 'A melhor maçã da região',
+  description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
 );
 
 ItemModel grape = ItemModel(
@@ -14,7 +15,8 @@ ItemModel grape = ItemModel(
   imageAsset: Image.asset('assets/Images/grape.png'),
   unit: 'kg',
   price: 2.6,
-  description: 'A melhor uva da região',
+  description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
 );
 
 ItemModel guava = ItemModel(
@@ -22,7 +24,8 @@ ItemModel guava = ItemModel(
   imageAsset: Image.asset('assets/Images/guava.png'),
   unit: 'kg',
   price: 8.9,
-  description: 'A melhor goiaba da região',
+  description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
 );
 
 ItemModel kiwi = ItemModel(
@@ -30,7 +33,8 @@ ItemModel kiwi = ItemModel(
   imageAsset: Image.asset('assets/Images/kiwi.png'),
   unit: 'kg',
   price: 13.00,
-  description: 'Kiwi Docinho',
+  description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
 );
 
 ItemModel mango = ItemModel(
@@ -38,7 +42,8 @@ ItemModel mango = ItemModel(
   imageAsset: Image.asset('assets/Images/mango.png'),
   unit: 'kg',
   price: 5.50,
-  description: 'A melhor manga da região',
+  description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
 );
 
 ItemModel papaya = ItemModel(
@@ -46,7 +51,8 @@ ItemModel papaya = ItemModel(
   imageAsset: Image.asset('assets/Images/papaya.png'),
   unit: 'kg',
   price: 6.9,
-  description: 'Mamão formoso',
+  description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
 );
 
 List<ItemModel> items = [
