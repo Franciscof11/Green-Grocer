@@ -14,6 +14,7 @@ dependencies:
   flutter_svg: ^2.0.3
   google_fonts: ^4.0.3
   mask_text_input_formatter: ^2.4.0
+  intl: ^0.18.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0

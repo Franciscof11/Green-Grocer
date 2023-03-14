@@ -2,9 +2,11 @@ import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:green_grocer/Utils/consts.dart';
+import 'package:green_grocer/View/Widgets/remove_glow_effect.dart';
 
 import '../../Model/app_mock_data.dart' as mock_data;
 import '../Widgets/category_tile.dart';
+import '../Widgets/grid_view_home_tile.dart';
 
 class _HomePageState extends State<HomePage> {
   String selectedCategorie = 'Todos';
@@ -100,10 +102,34 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
               ),
-            )
+            ),
 
             //
             //GridView Items
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 24),
+                child: RefreshIndicator(
+                  onRefresh: () {
+                    return Future(() => null);
+                  },
+                  child: RemoveGlowEffect(
+                    child: GridView.builder(
+                      itemCount: mock_data.categories.length,
+                      physics: AlwaysScrollableScrollPhysics(),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                        mainAxisExtent: 230,
+                      ),
+                      itemBuilder: (_, index) =>
+                          GridViewHomeTile(itemModel: mock_data.items[index]),
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
