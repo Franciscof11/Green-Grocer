@@ -13,47 +13,70 @@ class GridViewHomeTile extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18),
-        color: Colors.blue, /* COLOR WHITE */
+        color: Colors.white,
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Expanded(
-              child: itemModel.imageAsset,
-            ),
-            Text(
-              itemModel.name,
-              style: GoogleFonts.cairo(
-                height: 1.2,
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Row(
+      child: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(
-                  utilsServices.priceFormatter(itemModel.price),
-                  style: GoogleFonts.cairo(
-                    height: 1,
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: ColorsClass().backgroundGreen,
-                  ),
+                Expanded(
+                  child: itemModel.imageAsset,
                 ),
                 Text(
-                  '/${itemModel.unit}',
+                  itemModel.name,
                   style: GoogleFonts.cairo(
-                    fontSize: 14,
+                    height: 1.2,
+                    fontSize: 22,
                     fontWeight: FontWeight.bold,
-                    color: Colors.grey,
                   ),
+                ),
+                Row(
+                  children: [
+                    Text(
+                      utilsServices.priceFormatter(itemModel.price),
+                      style: GoogleFonts.cairo(
+                        height: 1,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: ColorsClass().backgroundGreen,
+                      ),
+                    ),
+                    Text(
+                      '/${itemModel.unit}',
+                      style: GoogleFonts.cairo(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
+          ),
+          Positioned(
+            top: 0,
+            right: 0,
+            child: GestureDetector(
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(12),
+                    bottomLeft: Radius.circular(10),
+                  ),
+                  color: ColorsClass().backgroundGreen,
+                ),
+                width: 35,
+                height: 35,
+                child:
+                    Icon(Icons.add_shopping_cart_rounded, color: Colors.white),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
