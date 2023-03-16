@@ -16,11 +16,7 @@ class GridViewHomeTile extends StatelessWidget {
         GestureDetector(
           onTap: () => Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => ProductDetaislPage(
-                    itemName: itemModel.name,
-                    itemDescription: itemModel.description,
-                    itemPrice: itemModel.price,
-                    image: itemModel.imageAsset,
-                    unit: itemModel.unit,
+                    item: itemModel,
                   ))),
           child: Container(
             decoration: BoxDecoration(
@@ -33,7 +29,10 @@ class GridViewHomeTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Expanded(
-                    child: itemModel.imageAsset,
+                    child: Hero(
+                      tag: itemModel.imageAsset,
+                      child: itemModel.imageAsset,
+                    ),
                   ),
                   Text(
                     itemModel.name,

@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:green_grocer/View/Widgets/remove_glow_effect.dart';
 
+import '../../Model/item_model.dart';
 import '../../Utils/consts.dart';
 import '../../Utils/utils_services.dart';
+import '../Widgets/amount_widget.dart';
 
 class ProductDetaislPage extends StatelessWidget {
-  const ProductDetaislPage(
-      {super.key,
-      required this.itemName,
-      required this.itemPrice,
-      required this.itemDescription,
-      required this.image,
-      required this.unit});
-  final String itemName;
-  final double itemPrice;
-  final String itemDescription;
-  final Widget image;
-  final String unit;
+  const ProductDetaislPage({
+    super.key,
+    required this.item,
+  });
+  final ItemModel item;
 
   @override
   Widget build(BuildContext context) {
@@ -43,13 +39,17 @@ class ProductDetaislPage extends StatelessWidget {
           //
           //Image
           Expanded(
-            child: image,
+            child: Hero(
+              tag: item.imageAsset,
+              child: item.imageAsset,
+            ),
           ),
           //
           //Modal
           Expanded(
             child: Container(
               decoration: BoxDecoration(
+                  boxShadow: [BoxShadow(color: Colors.grey)],
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(42),
@@ -59,93 +59,106 @@ class ProductDetaislPage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    //
+                    //Header
+                    SizedBox(height: 40),
+                    Column(
                       children: [
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            color: Colors.blue,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(height: 18),
-                                Text(
-                                  itemName,
-                                  style: GoogleFonts.cairo(
-                                    height: 1.2,
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                item.name,
+                                style: GoogleFonts.cairo(
+                                  height: 1.4,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      utilsServices.priceFormatter(itemPrice),
-                                      style: GoogleFonts.cairo(
-                                        height: 1,
-                                        fontSize: 22,
-                                        fontWeight: FontWeight.bold,
-                                        color: ColorsClass().backgroundGreen,
-                                      ),
-                                    ),
-                                    Text(
-                                      '/$unit',
-                                      style: GoogleFonts.cairo(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(width: 150),
-                              ],
+                              ),
                             ),
-                          ),
+                            AmountWidget(unit: item.unit),
+                          ],
                         ),
-                        Expanded(
-                          child: Text('CONTADOR AQUI'),
+                        Row(
+                          children: [
+                            Text(
+                              utilsServices.priceFormatter(item.price),
+                              style: GoogleFonts.cairo(
+                                height: 1,
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                color: ColorsClass().backgroundGreen,
+                              ),
+                            ),
+                            Text(
+                              '/${item.unit}',
+                              style: GoogleFonts.cairo(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                    SizedBox(height: 20),
-                    Text(
-                      itemDescription,
-                      style: GoogleFonts.cairo(
-                        height: 1.25,
-                        fontSize: 17,
+                    SizedBox(height: 15),
+                    //
+                    //Description
+                    Expanded(
+                      flex: 5,
+                      child: RemoveGlowEffect(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              Text(
+                                item.description,
+                                style: GoogleFonts.cairo(
+                                  height: 1.25,
+                                  fontSize: 17,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
-                    SizedBox(height: 90),
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.symmetric(vertical: 10),
-                            elevation: 0,
-                            shape: ContinuousRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            )),
-                        onPressed: () {},
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.shopping_cart_outlined,
-                              color: Colors.white,
-                            ),
-                            SizedBox(width: 10),
-                            Text(
-                              'Adicionar ao carrinho',
-                              style: GoogleFonts.cairo(
-                                fontSize: 22,
-                                fontWeight: FontWeight.w700,
+                    SizedBox(height: 15),
+                    //
+                    //Button
+                    Expanded(
+                      flex: 2,
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.symmetric(vertical: 10),
+                              elevation: 0,
+                              shape: ContinuousRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              )),
+                          onPressed: () {},
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.shopping_cart_outlined,
                                 color: Colors.white,
                               ),
-                            )
-                          ],
-                        ))
+                              SizedBox(width: 10),
+                              Text(
+                                'Adicionar ao carrinho',
+                                style: GoogleFonts.cairo(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.white,
+                                ),
+                              )
+                            ],
+                          )),
+                    ),
+                    SizedBox(height: 30),
                   ],
                 ),
               ),
