@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:green_grocer/View/Widgets/remove_glow_effect.dart';
 
-import '../../Model/item_model.dart';
-import '../../Utils/consts.dart';
-import '../../Utils/utils_services.dart';
-import '../Widgets/amount_widget.dart';
+import '../../../Model/item_model.dart';
+import '../../../Utils/consts.dart';
+import '../../../Utils/utils_services.dart';
+import '../../Widgets/amount_widget.dart';
 
 class ProductDetaislPage extends StatelessWidget {
   const ProductDetaislPage({

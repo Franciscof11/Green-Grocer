@@ -4,9 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:green_grocer/Utils/consts.dart';
 import 'package:green_grocer/View/Widgets/remove_glow_effect.dart';
 
-import '../../Model/app_mock_data.dart' as mock_data;
-import '../Widgets/category_tile.dart';
-import '../Widgets/grid_view_home_tile.dart';
+import '../../../Model/app_mock_data.dart' as mock_data;
+import '../../Widgets/category_tile.dart';
+import '../../Widgets/grid_view_home_tile.dart';
 
 class _HomePageState extends State<HomePage> {
   String selectedCategorie = 'Todos';

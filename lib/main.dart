@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'View/Pages/sing_in.dart';
+import 'View/Pages/sing_in/sing_in_view.dart';
 
 void main() {
   runApp(const MainApp());
