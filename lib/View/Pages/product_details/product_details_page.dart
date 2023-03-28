@@ -1,165 +1,151 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:green_grocer/View/Widgets/remove_glow_effect.dart';
 
 import '../../../Model/item_model.dart';
-import '../../../Utils/consts.dart';
 import '../../../Utils/utils_services.dart';
 import '../../Widgets/amount_widget.dart';
 
-class ProductDetaislPage extends StatelessWidget {
-  const ProductDetaislPage({
-    super.key,
+class ProductDetaislPage extends StatefulWidget {
+  ProductDetaislPage({
+    Key? key,
     required this.item,
-  });
+  }) : super(key: key);
+
   final ItemModel item;
 
   @override
+  State<ProductDetaislPage> createState() => _ProductDetaislPageState();
+}
+
+class _ProductDetaislPageState extends State<ProductDetaislPage> {
+  final UtilsServices utilsServices = UtilsServices();
+
+  int cartItemQuantity = 1;
+
+  @override
   Widget build(BuildContext context) {
-    UtilsServices utilsServices = UtilsServices();
     return Scaffold(
-      backgroundColor: ColorsClass().backgroundGrey,
-      appBar: AppBar(
-        elevation: 0,
-        leading: IconButton(
-          onPressed: Navigator.of(context).pop,
-          icon: Padding(
-            padding: const EdgeInsets.only(left: 8, top: 8),
-            child: Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-              size: 35,
-            ),
-          ),
-        ),
-        backgroundColor: Colors.transparent,
-      ),
-      body: Column(
+      backgroundColor: Colors.white.withAlpha(230),
+      body: Stack(
         children: [
-          //
-          //Image
-          Expanded(
-            child: Hero(
-              tag: item.imageAsset,
-              child: item.imageAsset,
-            ),
-          ),
-          //
-          //Modal
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                  boxShadow: [BoxShadow(color: Colors.grey)],
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(42),
-                    topLeft: Radius.circular(42),
-                  )),
-              width: MediaQuery.of(context).size.width,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: Column(
-                  children: [
-                    //
-                    //Header
-                    SizedBox(height: 40),
-                    Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                item.name,
+          // Conteúdo
+          Column(
+            children: [
+              Expanded(
+                child: Hero(
+                  tag: widget.item.name,
+                  child: widget.item.image,
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.all(32),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(50),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.shade600,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      // Nome - Quantidade
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(widget.item.name,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
                                 style: GoogleFonts.cairo(
                                   height: 1.4,
                                   fontSize: 25,
                                   fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                            AmountWidget(unit: item.unit),
-                          ],
+                                )),
+                          ),
+                          QuantityWidget(
+                            suffixText: widget.item.unit,
+                            value: cartItemQuantity,
+                            result: (quantity) {
+                              setState(() {
+                                cartItemQuantity = quantity;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+
+                      // Preço
+                      Text(
+                        utilsServices.priceFormatter(widget.item.price),
+                        style: TextStyle(
+                          fontSize: 23,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
                         ),
-                        Row(
-                          children: [
-                            Text(
-                              utilsServices.priceFormatter(item.price),
+                      ),
+
+                      // Descrição
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: SingleChildScrollView(
+                            child: Text(
+                              widget.item.description,
                               style: GoogleFonts.cairo(
-                                height: 1,
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                                color: ColorsClass().backgroundGreen,
+                                height: 1.25,
+                                fontSize: 17,
                               ),
                             ),
-                            Text(
-                              '/${item.unit}',
-                              style: GoogleFonts.cairo(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 15),
-                    //
-                    //Description
-                    Expanded(
-                      flex: 5,
-                      child: RemoveGlowEffect(
-                        child: SingleChildScrollView(
-                          child: Column(
-                            children: [
-                              Text(
-                                item.description,
-                                style: GoogleFonts.cairo(
-                                  height: 1.25,
-                                  fontSize: 17,
-                                ),
-                              ),
-                            ],
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(height: 15),
-                    //
-                    //Button
-                    Expanded(
-                      flex: 2,
-                      child: ElevatedButton(
+
+                      // Botão
+                      SizedBox(
+                        height: 55,
+                        child: ElevatedButton.icon(
                           style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.symmetric(vertical: 10),
-                              elevation: 0,
-                              shape: ContinuousRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
-                              )),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
                           onPressed: () {},
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.shopping_cart_outlined,
-                                color: Colors.white,
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                'Adicionar ao carrinho',
-                                style: GoogleFonts.cairo(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.white,
-                                ),
-                              )
-                            ],
-                          )),
-                    ),
-                    SizedBox(height: 30),
-                  ],
+                          label: Text(
+                            'Add no carrinho',
+                            style: GoogleFonts.cairo(
+                              fontSize: 22,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            ),
+                          ),
+                          icon: const Icon(
+                            Icons.shopping_cart_outlined,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+
+          // Botão voltar
+          Positioned(
+            left: 10,
+            top: 10,
+            child: SafeArea(
+              child: IconButton(
+                onPressed: () => Navigator.of(context).pop(),
+                icon: const Icon(
+                  Icons.arrow_back_ios,
                 ),
               ),
             ),

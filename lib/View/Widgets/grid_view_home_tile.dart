@@ -3,7 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:green_grocer/Model/item_model.dart';
 import 'package:green_grocer/Utils/consts.dart';
 import 'package:green_grocer/Utils/utils_services.dart';
-import 'package:green_grocer/View/Pages/product_details/product_details_view.dart';
+
+import '../Pages/product_details/product_details_page.dart';
 
 class GridViewHomeTile extends StatelessWidget {
   const GridViewHomeTile({super.key, required this.itemModel});
@@ -30,8 +31,8 @@ class GridViewHomeTile extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Hero(
-                      tag: itemModel.imageAsset,
-                      child: itemModel.imageAsset,
+                      tag: itemModel.name,
+                      child: itemModel.image,
                     ),
                   ),
                   Text(

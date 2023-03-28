@@ -3,7 +3,7 @@ import 'package:green_grocer/Model/item_model.dart';
 
 ItemModel apple = ItemModel(
   name: 'Maçã',
-  imageAsset: Image.asset('assets/Images/apple.png'),
+  image: Image.asset('assets/Images/apple.png'),
   unit: 'kg',
   price: 6.5,
   description:
@@ -12,7 +12,7 @@ ItemModel apple = ItemModel(
 
 ItemModel grape = ItemModel(
   name: 'Uva',
-  imageAsset: Image.asset('assets/Images/grape.png'),
+  image: Image.asset('assets/Images/grape.png'),
   unit: 'kg',
   price: 2.6,
   description:
@@ -21,7 +21,7 @@ ItemModel grape = ItemModel(
 
 ItemModel guava = ItemModel(
   name: 'Goiaba',
-  imageAsset: Image.asset('assets/Images/guava.png'),
+  image: Image.asset('assets/Images/guava.png'),
   unit: 'kg',
   price: 8.9,
   description:
@@ -30,7 +30,7 @@ ItemModel guava = ItemModel(
 
 ItemModel kiwi = ItemModel(
   name: 'Kiwi',
-  imageAsset: Image.asset('assets/Images/kiwi.png'),
+  image: Image.asset('assets/Images/kiwi.png'),
   unit: 'kg',
   price: 13.00,
   description:
@@ -39,7 +39,7 @@ ItemModel kiwi = ItemModel(
 
 ItemModel mango = ItemModel(
   name: 'Manga',
-  imageAsset: Image.asset('assets/Images/mango.png'),
+  image: Image.asset('assets/Images/mango.png'),
   unit: 'un',
   price: 2.5,
   description:
@@ -48,7 +48,7 @@ ItemModel mango = ItemModel(
 
 ItemModel papaya = ItemModel(
   name: 'Mamão',
-  imageAsset: Image.asset('assets/Images/papaya.png'),
+  image: Image.asset('assets/Images/papaya.png'),
   unit: 'kg',
   price: 6.9,
   description:
