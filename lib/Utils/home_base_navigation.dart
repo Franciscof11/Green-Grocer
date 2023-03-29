@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:green_grocer/Utils/consts.dart';
 import 'package:green_grocer/View/Pages/home_page/home_page_view.dart';
 
+import '../View/Pages/cart/cart_page_view.dart';
+
 class _HomeBaseNavigationState extends State<HomeBaseNavigation> {
   int currentIndex = 0;
 
@@ -48,11 +50,7 @@ class _HomeBaseNavigationState extends State<HomeBaseNavigation> {
           controller: pageController,
           children: [
             HomePage(),
-            Container(
-              width: 500,
-              height: 300,
-              color: Colors.red,
-            ),
+            CartPage(),
             Container(
               width: 500,
               height: 300,
