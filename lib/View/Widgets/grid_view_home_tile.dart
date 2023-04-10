@@ -32,7 +32,7 @@ class GridViewHomeTile extends StatelessWidget {
                   Expanded(
                     child: Hero(
                       tag: itemModel.name,
-                      child: itemModel.image,
+                      child: Image.asset(itemModel.imageUrl),
                     ),
                   ),
                   Text(

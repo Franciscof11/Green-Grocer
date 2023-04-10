@@ -4,6 +4,7 @@ import 'package:green_grocer/Utils/utils_services.dart';
 import 'package:green_grocer/View/Widgets/remove_glow_effect.dart';
 
 import '../../../Model/app_mock_data.dart' as mock_data;
+import '../../../Model/app_mock_data.dart';
 import '../../../Utils/consts.dart';
 import '../../Widgets/cart_tile.dart';
 
@@ -24,9 +25,11 @@ class CartPage extends StatelessWidget {
               flex: 4,
               child: RemoveGlowEffect(
                 child: ListView.builder(
-                  itemCount: 3,
-                  itemBuilder: (context, index) =>
-                      CartTile(item: mock_data.items[index]),
+                  itemCount: mock_data.cartItems.length,
+                  itemBuilder: (context, index) => CartTile(
+                    cartItem: mock_data.cartItems[index],
+                    cartItems: cartItems,
+                  ),
                 ),
               )),
           //

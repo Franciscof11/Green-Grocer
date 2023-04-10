@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:green_grocer/Model/item_model.dart';
+
+import 'cart_item_model.dart';
 
 ItemModel apple = ItemModel(
   name: 'Maçã',
-  image: Image.asset('assets/Images/apple.png'),
+  imageUrl: 'assets/Images/apple.png',
   unit: 'kg',
   price: 6.5,
   description:
@@ -12,7 +13,7 @@ ItemModel apple = ItemModel(
 
 ItemModel grape = ItemModel(
   name: 'Uva',
-  image: Image.asset('assets/Images/grape.png'),
+  imageUrl: 'assets/Images/grape.png',
   unit: 'kg',
   price: 2.6,
   description:
@@ -21,7 +22,7 @@ ItemModel grape = ItemModel(
 
 ItemModel guava = ItemModel(
   name: 'Goiaba',
-  image: Image.asset('assets/Images/guava.png'),
+  imageUrl: 'assets/Images/guava.png',
   unit: 'kg',
   price: 8.9,
   description:
@@ -30,7 +31,7 @@ ItemModel guava = ItemModel(
 
 ItemModel kiwi = ItemModel(
   name: 'Kiwi',
-  image: Image.asset('assets/Images/kiwi.png'),
+  imageUrl: 'assets/Images/kiwi.png',
   unit: 'kg',
   price: 13.00,
   description:
@@ -39,7 +40,7 @@ ItemModel kiwi = ItemModel(
 
 ItemModel mango = ItemModel(
   name: 'Manga',
-  image: Image.asset('assets/Images/mango.png'),
+  imageUrl: 'assets/Images/mango.png',
   unit: 'un',
   price: 2.5,
   description:
@@ -48,7 +49,7 @@ ItemModel mango = ItemModel(
 
 ItemModel papaya = ItemModel(
   name: 'Mamão',
-  image: Image.asset('assets/Images/papaya.png'),
+  imageUrl: 'assets/Images/papaya.png',
   unit: 'kg',
   price: 6.9,
   description:
@@ -71,4 +72,10 @@ List<String> categories = [
   'Verduras',
   'Temperos',
   'Cereais'
+];
+
+List<CartItemModel> cartItems = [
+  CartItemModel(item: apple, quantity: 3),
+  CartItemModel(item: kiwi, quantity: 1),
+  CartItemModel(item: mango, quantity: 1),
 ];

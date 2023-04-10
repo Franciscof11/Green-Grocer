@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:green_grocer/Utils/consts.dart';
-import 'package:green_grocer/View/Pages/home_page/home_page_view.dart';
 
 import '../View/Pages/cart/cart_page_view.dart';
+import '../View/Pages/home/home_page_view.dart';
 
 class _HomeBaseNavigationState extends State<HomeBaseNavigation> {
   int currentIndex = 0;

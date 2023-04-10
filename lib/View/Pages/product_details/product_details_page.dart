@@ -34,7 +34,7 @@ class _ProductDetaislPageState extends State<ProductDetaislPage> {
               Expanded(
                 child: Hero(
                   tag: widget.item.name,
-                  child: widget.item.image,
+                  child: Image.asset(widget.item.imageUrl),
                 ),
               ),
               Expanded(
