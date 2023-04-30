@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:green_grocer/Model/cart_item_model.dart';
 import 'package:green_grocer/Utils/utils_services.dart';
 import 'package:green_grocer/View/Widgets/remove_glow_effect.dart';
 
@@ -8,12 +9,34 @@ import '../../../Model/app_mock_data.dart';
 import '../../../Utils/consts.dart';
 import '../../Widgets/cart_tile.dart';
 
-class CartPage extends StatelessWidget {
-  const CartPage({super.key});
+class CartPage extends StatefulWidget {
+  CartPage({super.key});
+
+  @override
+  State<CartPage> createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> {
+  final UtilsServices utilsServices = UtilsServices();
+
+  void removeItemFromCart(CartItemModel cartItem) {
+    setState(() {
+      mock_data.cartItems.remove(cartItem);
+    });
+  }
+
+  double cartTotalPrice() {
+    double total = 0;
+
+    for (var item in mock_data.cartItems) {
+      total += item.totalPrice();
+    }
+
+    return total;
+  }
 
   @override
   Widget build(BuildContext context) {
-    UtilsServices utilsServices = UtilsServices();
     return Scaffold(
       backgroundColor: ColorsClass().backgroundGrey,
       appBar: AppBar(
@@ -29,16 +52,16 @@ class CartPage extends StatelessWidget {
                   itemBuilder: (context, index) => CartTile(
                     cartItem: mock_data.cartItems[index],
                     cartItems: cartItems,
+                    remove: removeItemFromCart,
                   ),
                 ),
               )),
           //
           //Confirm Modal
           //
-          Expanded(
-              child: Container(
+          Container(
             width: double.infinity,
-            height: double.infinity,
+            height: MediaQuery.of(context).size.height * 0.19,
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -57,7 +80,7 @@ class CartPage extends StatelessWidget {
                   ),
                   SizedBox(height: 6),
                   Text(
-                    utilsServices.priceFormatter(45.50),
+                    utilsServices.priceFormatter(cartTotalPrice()),
                     style: GoogleFonts.cairo(
                       height: 1,
                       fontSize: 22,
@@ -65,11 +88,14 @@ class CartPage extends StatelessWidget {
                       color: ColorsClass().backgroundGreen,
                     ),
                   ),
-                  SizedBox(height: 8),
+                  SizedBox(height: 12),
                   SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        // ignore: unused_local_variable
+                        bool? result = await showOrderConfirmation();
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: ColorsClass().backgroundGreen,
                         padding: EdgeInsets.symmetric(
@@ -89,9 +115,41 @@ class CartPage extends StatelessWidget {
                 ],
               ),
             ),
-          )),
+          ),
         ],
       ),
+    );
+  }
+
+  Future<bool?> showOrderConfirmation() {
+    return showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          shape: ContinuousRectangleBorder(
+              borderRadius: BorderRadius.circular(20)),
+          title: Text('Confirmação'),
+          content: Text('Deseja realmente concluir o pedido?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context, false);
+              },
+              child: Text('Não'),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                shape: ContinuousRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+              ),
+              onPressed: () {
+                Navigator.pop(context, true);
+              },
+              child: Text('Sim'),
+            )
+          ],
+        );
+      },
     );
   }
 }
